@@ -7,6 +7,8 @@ class Company < ApplicationRecord
   validates :document, :legal_name, uniqueness: { case_sensitive: false }
   validate :valid_document
 
+  has_one :address, as: :addressable
+
   private
 
   def valid_document

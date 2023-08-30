@@ -12,10 +12,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_828_193_823) do
+ActiveRecord::Schema[7.0].define(version: 20_230_830_171_939) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
+
+  create_table 'addresses', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.string 'zip_code'
+    t.string 'address'
+    t.string 'address_number'
+    t.string 'complement'
+    t.string 'state'
+    t.string 'city'
+    t.string 'neighborhood'
+    t.string 'addressable_type', null: false
+    t.uuid 'addressable_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['address'], name: 'index_addresses_on_address'
+    t.index ['address_number'], name: 'index_addresses_on_address_number'
+    t.index %w[addressable_type addressable_id], name: 'index_addresses_on_addressable'
+    t.index ['city'], name: 'index_addresses_on_city'
+    t.index ['complement'], name: 'index_addresses_on_complement'
+    t.index ['neighborhood'], name: 'index_addresses_on_neighborhood'
+    t.index ['state'], name: 'index_addresses_on_state'
+    t.index ['zip_code'], name: 'index_addresses_on_zip_code'
+  end
 
   create_table 'companies', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.string 'document'
