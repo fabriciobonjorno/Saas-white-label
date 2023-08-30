@@ -9,3 +9,7 @@ pt-BR:
   company:
     errors:
       document: 'CPNJ inválido, por favor verifique novamente!'
+  user:
+    errors:
+      username: 'O username não podem ter espaços e/ou caracteres especiais'
+      password: 'A senha deve ter mais de 8 caracteres, incluindo 1 letra maiúscula, 1 número, 1 caractere especial'
