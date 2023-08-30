@@ -1,3 +1,4 @@
+@import "toastify-js/src/toastify";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
