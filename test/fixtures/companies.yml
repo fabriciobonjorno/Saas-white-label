@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  document: 12.605.116/0001-19
+  legal_name: My Company
+  trade_name: Company
+
+two:
+  document: 12.685.116/0001-19
+  legal_name: My Company 2
+  trade_name: Company 2
