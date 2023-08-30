@@ -8,6 +8,7 @@ class Company < ApplicationRecord
   validate :valid_document
 
   has_one :address, as: :addressable
+  has_many :phones, as: :phoneble
 
   private
 
