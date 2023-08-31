@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_830_182_119) do
+ActiveRecord::Schema[7.0].define(version: 20_230_831_170_716) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -50,6 +50,23 @@ ActiveRecord::Schema[7.0].define(version: 20_230_830_182_119) do
     t.index ['trade_name'], name: 'index_companies_on_trade_name'
   end
 
+  create_table 'permissions', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.string 'name'
+    t.string 'key'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.uuid 'parent_id'
+    t.index ['key'], name: 'index_permissions_on_key'
+    t.index ['name'], name: 'index_permissions_on_name'
+    t.index ['parent_id'], name: 'index_permissions_on_parent_id'
+  end
+
+  create_table 'permissions_profiles', id: false, force: :cascade do |t|
+    t.bigint 'profile_id', null: false
+    t.bigint 'permission_id', null: false
+    t.index %w[profile_id permission_id], name: 'index_permissions_profiles_on_profile_id_and_permission_id'
+  end
+
   create_table 'phones', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.string 'number'
     t.integer 'kind'
@@ -60,6 +77,17 @@ ActiveRecord::Schema[7.0].define(version: 20_230_830_182_119) do
     t.index ['kind'], name: 'index_phones_on_kind'
     t.index ['number'], name: 'index_phones_on_number'
     t.index %w[phoneble_type phoneble_id], name: 'index_phones_on_phoneble'
+  end
+
+  create_table 'profiles', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.string 'name'
+    t.string 'key'
+    t.uuid 'company_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['company_id'], name: 'index_profiles_on_company_id'
+    t.index ['key'], name: 'index_profiles_on_key'
+    t.index ['name'], name: 'index_profiles_on_name'
   end
 
   create_table 'users', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
@@ -82,13 +110,18 @@ ActiveRecord::Schema[7.0].define(version: 20_230_830_182_119) do
     t.string 'name'
     t.string 'username'
     t.uuid 'company_id', null: false
+    t.uuid 'profile_id', null: false
     t.index ['company_id'], name: 'index_users_on_company_id'
     t.index ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['name'], name: 'index_users_on_name'
+    t.index ['profile_id'], name: 'index_users_on_profile_id'
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
     t.index ['username'], name: 'index_users_on_username'
   end
 
+  add_foreign_key 'permissions', 'permissions', column: 'parent_id'
+  add_foreign_key 'profiles', 'companies'
   add_foreign_key 'users', 'companies'
+  add_foreign_key 'users', 'profiles'
 end

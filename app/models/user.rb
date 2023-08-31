@@ -12,9 +12,10 @@ class User < ApplicationRecord
   validate :password_regex
   validate :username_regex
 
-  has_one :address, as: :addressable
-  has_many :phones, as: :phoneble
+  has_one :address, as: :addressable, dependent: :destroy
+  has_many :phones, as: :phoneble, dependent: :destroy
   belongs_to :company
+  belongs_to :profile
 
   private
 
