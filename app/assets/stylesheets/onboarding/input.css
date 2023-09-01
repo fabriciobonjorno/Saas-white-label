@@ -1,0 +1,51 @@
+.hoverClick {
+    @apply bg-BaseGreen-400 text-BaseGreen-900 border border-BaseGreen-900;
+}
+
+.active {
+    color: #71e4b4;
+}
+
+.activeCard {
+    background-color: #71e4b4;
+}
+
+.icons .activeCard::before {
+    background-color: #71e4b4;
+}
+
+.lineCard::before {
+    content: '' !important;
+    display: block !important;
+    position: absolute !important;
+    height: 2px !important;
+    width: 96px !important;
+    background-color: #fff !important;
+    bottom: 47px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: -1 !important;
+    
+}
+
+@keyframes pulse-swing {
+    0% {
+        transform: translateY(0) rotate(0);
+    }
+    25% {
+        transform: translateY(-15px) rotate(0);
+    }
+    50% {
+        transform: translateY(10px) rotate(0);
+    }
+    75% {
+        transform: translateY(-5px) rotate(0);
+    }
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+}
+
+.animate-pulse-swing {
+    animation: pulse-swing 3s ease-in-out infinite;
+}

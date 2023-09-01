@@ -1,0 +1,25 @@
+.active {
+  color: #71e4b4;
+}
+
+.activeCard {
+  background-color: #71e4b4;
+}
+
+.icons .activeCard::before {
+  background-color: #71e4b4;
+}
+
+.lineCard::before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 96px;
+  background-color: #fff;
+  bottom: 47px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
