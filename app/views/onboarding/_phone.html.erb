@@ -1,0 +1,41 @@
+<%= f.fields_for :phone do |ff| %>
+  <div class="step  h-bigCard w-96 max-[640px]:w-80 max-[640px]:rounded-lg rounded-r-lg p-4 bg-BaseGreen-500 hidden"
+    data-step="3">
+    <h2 class="text-2xl font-bold text-white mb-4 max-[640px]:text-xl">Passo 3: Contato</h2>
+    <div class="grid grid-cols-3">
+      <div class="relative mb-4 col-span-3">
+        <%= ff.text_field :number,
+            class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+            placeholder:" ",
+            maxlength:"15",
+            minlength:"15",
+            data: { mask: "(dd) ddddd-dddd" } ,
+            inputmode:"numeric",
+            pattern:".{15,15}",
+            id: 'tel'
+        %>
+        <%= ff.label :number,
+            class: "absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        %>
+      </div>
+      <div class="mb-4 col-span-3">
+        <%= ff.select :kind,
+            Phone.kinds.keys, { prompt: 'Selecione um Tipo'},
+            class: "w-full p-2 rounded-md py-3 text-green-600",
+            id: 'tipo-telefone'
+        %>
+      </div>
+      <div class="mb-4 flex items-center col-span-2">
+        <%= ff.check_box :whatsapp, 
+            class: "w-4 h-4 mr-2 text-white", 
+            id: "whatsapp" 
+        %>
+        <%= ff.label :whatsapp %>
+      </div>
+    </div>
+    <button class="bg-green-500 hover:hoverClick text-white px-4 py-2 rounded-full prev-step"
+        data-step="2">Anterior</button>
+    <button class="bg-green-500 hover:hoverClick text-white px-4 py-2 rounded-full next-step"
+        data-step="4">Próximo</button>
+  </div>
+<% end %>

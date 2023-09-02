@@ -13,6 +13,20 @@ pt-BR:
         document: 'CNPJ'
         legal_name: 'Razão Social'
         trade_name: 'Nome Fantasia'
+        zip_code: 'Cep'
+        company/address:
+        zip_code: 'Cep'
+      company/address:
+          zip_code: 'Cep'
+          address: 'Endereço'
+          address_number: 'Número'
+          complement: 'Complemento'
+          state: 'Estado'
+          city: 'Cidade'
+          neighborhood: 'Bairro'
+      company/phone:
+          zip_code: 'Cep'
+          address: 'Endereço'
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

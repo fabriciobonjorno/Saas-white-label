@@ -1,0 +1,38 @@
+<div class="step h-bigCard max-[640px]:w-80 w-96 max-[640px]:rounded-lg rounded-r-lg p-4 bg-BaseGreen-500"
+    data-step="1">
+  <h2 class="text-2xl font-bold text-white mb-4 max-[640px]:text-xl">Passo 1: Dados da Empresa
+  </h2>
+  <div class="relative mb-4">
+    <%= f.text_field :document,
+        class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+        placeholder:" ",
+        maxlength:"18",
+        id: 'cnpj'
+    %>
+    <%= f.label :document,
+        class:"absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+    %>
+  </div>
+  <div class="relative mb-4">
+    <%= f.text_field :legal_name,
+        class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+        placeholder:" ",
+        id: 'razao-social'
+    %>
+    <%= f.label :legal_name,
+        class:"absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+    %>
+  </div>
+  <div class="relative mb-4">
+    <%= f.text_field :trade_name,
+        class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+        placeholder:" ",
+        id: 'nome-fantasia'
+    %>
+    <%= f.label :trade_name,
+        class:"absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+    %>
+  </div>
+  <button class="bg-green-500 hover:hoverClick text-white px-4 py-2 rounded-full next-step"
+          data-step="2">Próximo</button>
+</div>

@@ -1,0 +1,84 @@
+<%= f.fields_for :address do |ff| %>
+  <div class="step h-bigCard w-96 max-[640px]:w-80 max-[640px]:rounded-lg rounded-r-lg p-4 bg-BaseGreen-500 hidden"
+    data-step="2">
+    <h2 class="text-2xl font-bold text-white mb-4 max-[640px]:text-xl">Passo 2: Endereço</h2>
+    <div class="grid grid-cols-2">
+      <div class="relative mb-4">
+        <%= ff.text_field :zip_code,
+            class: "block rounded-md px-2.5 pb-2.5 pt-5 w-11/12 text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+            placeholder:" ",
+            maxlength:"9",
+            minlength:"8",
+            id: 'cep'
+        %>
+        <%= ff.label :zip_code,
+            class: "absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        %>
+      </div>
+      <div class="relative mb-4">
+        <%= ff.text_field :address_number,
+            class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+            placeholder:" ",
+            id: 'numero'
+       %>
+        <%= ff.label :address_number,
+            class: "absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        %>
+      </div>
+      <div class="relative mb-4 col-span-2">
+        <%= ff.text_field :address,
+            class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+            placeholder:" ",
+            id: 'rua'
+        %>
+        <%= ff.label :address,
+            class: "absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        %>
+      </div>
+      <div class="relative mb-4">
+        <%= ff.text_field :state,
+            class: "block rounded-md px-2.5 pb-2.5 pt-5 w-11/12 text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+            placeholder:" ",
+            id: 'estado'
+        %>
+        <%= ff.label :state,
+            class: "absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        %>
+      </div>
+      <div class="relative mb-4">
+        <%= ff.text_field :complement,
+            class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+            placeholder:" ",
+            id: 'complemento'
+        %>
+        <%= ff.label :complement,
+            class: "absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        %>
+      </div>
+      <div class="relative mb-4 col-span-2">
+        <%= ff.text_field :city,
+            class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+            placeholder:" ",
+            id: 'cidade'
+        %>
+        <%= ff.label :city,
+            class: "absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        %>
+      </div>
+      <div class="relative mb-4 col-span-2">
+        <%= ff.text_field :neighborhood,
+            class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+            placeholder:" ",
+            id: 'bairro'
+        %>
+        <%= ff.label :neighborhood,
+            class: "absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        %>
+      </div>
+    </div>
+    <button class="bg-green-500 hover:hoverClick text-white px-4 py-2 rounded-full prev-step"
+        data-step="1">Anterior</button>
+    <button class="bg-green-500 hover:hoverClick text-white px-4 py-2 rounded-full next-step"
+        data-step="3">Próximo</button>
+  </div>
+<% end %>

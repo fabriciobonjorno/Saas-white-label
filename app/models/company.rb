@@ -10,6 +10,7 @@ class Company < ApplicationRecord
   has_one :address, as: :addressable, dependent: :destroy
   has_many :phones, as: :phoneble, dependent: :destroy
   has_many :profiles, dependent: :destroy
+  has_many :users, dependent: :destroy
 
   private
 

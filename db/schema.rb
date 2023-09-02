@@ -69,7 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 20_230_831_170_716) do
 
   create_table 'phones', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.string 'number'
-    t.integer 'kind'
+    t.integer 'kind', default: 0
+    t.boolean 'whatsapp', default: false
     t.string 'phoneble_type', null: false
     t.uuid 'phoneble_id', null: false
     t.datetime 'created_at', null: false

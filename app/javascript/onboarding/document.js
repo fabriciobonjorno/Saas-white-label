@@ -27,10 +27,10 @@ async function searchCNPJ(cnpjInput, cnpjFormatado) {
                 textError.classList.add("hidden")
                 let queryCNPJConverted = await queryCNPJ.json()
                 cnpj.value = cnpjFormatado;
-                nomeFantasia.value = queryCNPJConverted.razao_social;
-                nomeFantasia.readOnly = true;
-                razaoSocial.value = queryCNPJConverted.estabelecimento.nome_fantasia;
+                razaoSocial.value = queryCNPJConverted.razao_social;
                 razaoSocial.readOnly = true;
+                nomeFantasia.value = queryCNPJConverted.estabelecimento.nome_fantasia;
+                nomeFantasia.readOnly = true;
             }
         }
 

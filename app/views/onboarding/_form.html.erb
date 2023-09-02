@@ -1,39 +1,8 @@
-<%= form_with(model: company, url: onboarding_path) do |form| %>
-  <% if company.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
-      <ul>
-        <% company.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :document, style: "display: block" %>
-    <%= form.text_field :document %>
-  </div>
-
-  <div>
-    <%= form.label :legal_name, style: "display: block" %>
-    <%= form.text_field :legal_name %>
-  </div>
-
-  <div>
-    <%= form.label :trade_name, style: "display: block" %>
-    <%= form.text_field :trade_name %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+<%= form_with(model: company, url: onboarding_path, id: "multi-step-form") do |f| %>
+  <%= render 'errors', company: company %>
+  <%= render 'company', f: f %>
+  <%= render 'address', f: f %>
+  <%= render 'phone', f: f %>
+  <%= render 'user', f: f %>
+  <%= render 'password', f: f %>
 <% end %>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const event = new CustomEvent('awesome')
-
-    window.dispatchEvent(event)
-  })
-</script>

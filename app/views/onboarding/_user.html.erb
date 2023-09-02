@@ -1,0 +1,41 @@
+<%= f.fields_for :user do |ff| %>
+  <div class="step h-bigCard w-96 max-[640px]:w-80 max-[640px]:rounded-lg rounded-r-lg p-4 bg-BaseGreen-500 hidden"
+    data-step="4">
+    <h2 class="text-2xl font-bold text-white mb-4 max-[640px]:text-xl">Passo 4: Informações da Conta
+    </h2>
+    <div class="relative mb-4">
+      <%= ff.text_field :name,
+					class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",	
+					placeholder: " ",
+					id: 'nome'
+ 			%>
+      <%= ff.label :name,
+					class: "absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+			%>
+    </div>
+    <div class="relative mb-4">
+      <%= ff.text_field :username,
+          class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+          placeholder: " ",
+          id: "username"
+				%>
+      <%= ff.label :username,
+					class: "absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+			%>
+    </div>
+    <div class="relative mb-4">
+      <%= ff.text_field :email,
+          class: "block rounded-md px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 focus:outline-none focus:ring-0 peer",
+          placeholder: " ",
+          id: 'email'
+			%>
+      <%= ff.label :email, 
+				  class:"absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+			%>
+    </div>
+    <button class="bg-green-500 hover:hoverClick text-white px-4 py-2 rounded-full prev-step"
+        data-step="3">Anterior</button>
+    <button class="bg-green-500 hover:hoverClick text-white px-4 py-2 rounded-full next-step"
+        data-step="5">Próximo</button>
+  </div>
+<% end %>
