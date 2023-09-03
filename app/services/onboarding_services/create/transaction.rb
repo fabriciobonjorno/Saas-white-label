@@ -13,48 +13,60 @@ module OnboardingServices
       end
 
       def verify_params(params)
-        params[:company][:phone][:number] = params[:company][:phone][:number].gsub!(/[^0-9]/, '')
-        params[:company][:document] = params[:company][:document].gsub!(/[^0-9]/, '')
-
+        clean_params(params)
         errors = []
-        company = params[:company].slice('document', 'legal_name', 'trade_name')
-        register = Company.new(company)
-        errors << register.errors.full_messages unless register.valid?
-        phone = register.phones.build(params[:company][:phone])
-        errors << phone.errors.full_messages unless phone.valid?
-        register.profiles.build(name: 'Admin', key: 'admin')
-        user = register.users.build(params[:company][:user])
-        register.users.first.profile = register.profiles.first
-        errors << user.errors.full_messages unless user.valid?
-        errors
 
-        if errors.nil? || errors.empty?
+        company = build_company(params[:company])
+        errors << company.errors.full_messages unless company.valid?
+
+        phone = company.phones.build(params[:company][:phone])
+        errors << phone.errors.full_messages unless phone.valid?
+
+        build_default_profile(company)
+        user = company.users.build(params[:company][:user])
+        user.profile = company.profiles.first
+        errors << user.errors.full_messages unless user.valid?
+
+        if errors.empty?
           Success(params)
         else
           Failure(errors)
-        end       
+        end
       end
 
       def create(params)
-        company = params[:company].slice('document', 'legal_name', 'trade_name')
-        register = Company.new(company)
-        register.build_address(params[:company][:address])
-        register.phones.build(params[:company][:phone])
-        register.profiles.build(name: 'Admin', key: 'admin')
-        register.users.build(params[:company][:user])
-        register.users.first.profile = register.profiles.first
-        if register.save
-          Success(register)
+        company = build_company(params[:company])
+        company.build_address(params[:company][:address])
+        company.phones.build(params[:company][:phone])
+        build_default_profile(company)
+        user = company.users.build(params[:company][:user])
+        user.profile = company.profiles.first
+
+        if company.save
+          Success(company)
         else
-          Failure(register.errors.full_messages.to_sentence)
+          Failure(company.errors.full_messages.to_sentence)
         end
       end
-     
+
       private
 
       def validate_contract(params)
         Contract.call(params.permit!.to_h)
-      end      
+      end
+
+      def clean_params(params)
+        params[:company][:phone][:number].gsub!(/[^0-9]/, '')
+        params[:company][:document].gsub!(/[^0-9]/, '')
+      end
+
+      def build_company(company_params)
+        Company.new(company_params.slice('document', 'legal_name', 'trade_name'))
+      end
+
+      def build_default_profile(company)
+        company.profiles.build(name: 'Admin', key: 'admin')
+      end
     end
   end
 end
