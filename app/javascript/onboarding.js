@@ -66,17 +66,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     showStep(currentStep);
 
-    form.addEventListener("submit", function (e) {
-        if (stepValidations[4]) {
-            e.preventDefault();
-            window.location.href = "/src/submit.html";
-        } else {
-            e.preventDefault()
-            textError.classList.remove("hidden")
-            textError.innerHTML = `Passo 5 não foi preenchido corretamente!`;
-        }
+    // form.addEventListener("submit", function (e) {
+    //     if (stepValidations[4]) {
+    //         e.preventDefault();
+    //         window.location.href = "/src/submit.html";
+    //     } else {
+    //         e.preventDefault()
+    //         textError.classList.remove("hidden")
+    //         textError.innerHTML = `Passo 5 não foi preenchido corretamente!`;
+    //     }
 
-    });
+    // });
 });
 
 const cnpjInput = document.getElementById("cnpj");

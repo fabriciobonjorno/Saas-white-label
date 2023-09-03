@@ -1,5 +1,5 @@
 <%= form_with(model: company, url: onboarding_path, id: "multi-step-form") do |f| %>
-  <%= render 'errors', company: company %>
+  <%#= render 'errors', company: company %>
   <%= render 'company', f: f %>
   <%= render 'address', f: f %>
   <%= render 'phone', f: f %>

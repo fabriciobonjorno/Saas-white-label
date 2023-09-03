@@ -3,25 +3,14 @@
 class OnboardingController < ApplicationController
   def new
     @company = Company.new
-    # @onboard.build_address
-    # @onboard.phone.build
-    # @onboard.user.build
   end
 
   def create
-    @company = Company.new(company_params)
-
-    if @company.save
-      redirect_to company_url(@company), notice: 'Company was successfully created.'
+    result = OnboardingServices::Create::Transaction.new.call(params)
+    if result.success?
+      redirect_to new_user_session_path, notice: 'Cadastro realizado com sucesso!'
     else
-      render :new, status: :unprocessable_entity
+      redirect_to onboarding_path, alert: result.failure
     end
-  end
-
-  private
-
-  # Only allow a list of trusted parameters through.
-  def company_params
-    params.require(:company).permit(:document, :legal_name, :trade_name)
   end
 end
